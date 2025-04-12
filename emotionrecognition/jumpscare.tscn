@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhht710g1n6qg"]
+
+[ext_resource type="Texture2D" uid="uid://bnbrnhn677hdt" path="res://Снимок экрана 2025-04-12 141842.png" id="1_lc0cw"]
+[ext_resource type="Texture2D" uid="uid://c3t20ppgbjsqo" path="res://Без названия.jpg" id="2_dkw4f"]
+
+[node name="jumpscare" type="Node2D"]
+
+[node name="door" type="Sprite2D" parent="."]
+texture = ExtResource("1_lc0cw")
+
+[node name="face" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+texture = ExtResource("2_dkw4f")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)

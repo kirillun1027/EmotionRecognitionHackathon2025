@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d11dy5udhiw8d"]
+
+[node name="Title" type="Node2D"]
+
+[node name="disclamer" type="Label" parent="."]
+offset_left = -689.0
+offset_top = -278.0
+offset_right = -200.0
+offset_bottom = -116.0
+scale = Vector2(2.73574, 3.31147)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "DISCLAIMER:
+The game may include disturbing images."
+horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="buttonlabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
