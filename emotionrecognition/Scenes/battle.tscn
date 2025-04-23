@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dbvtqbytiutbt"]
+[gd_scene load_steps=12 format=3 uid="uid://dbvtqbytiutbt"]
 
 [ext_resource type="Script" uid="uid://cpc5i5nyprgkt" path="res://Scripts/battle.gd" id="1_6t8i5"]
 [ext_resource type="Texture2D" uid="uid://bmrl5u6g4y6x" path="res://Images&Video/New Project.svg" id="1_7sfm4"]
 [ext_resource type="Texture2D" uid="uid://bv5kr3a6nqjyd" path="res://Images&Video/icon.svg" id="2_i431l"]
 [ext_resource type="Texture2D" uid="uid://ed80h1p57mx7" path="res://Atlases/tooth walker/tooth walker sprite-Sheet.png" id="3_6t8i5"]
-[ext_resource type="Script" uid="uid://bitnj3dmwqth7" path="res://Scripts/playerb.gd" id="4_dw4jg"]
+[ext_resource type="Script" uid="uid://bitnj3dmwqth7" path="res://Scripts/player_battle.gd" id="4_dw4jg"]
+[ext_resource type="Script" uid="uid://dmyhxqioigvs" path="res://Scenes/ui.gd" id="6_f6xt6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dw4jg"]
 atlas = ExtResource("3_6t8i5")
@@ -65,40 +66,6 @@ autostart = true
 wait_time = 1.985
 autostart = true
 
-[node name="HPP" type="Label" parent="Player"]
-offset_left = 274.0
-offset_top = -27.0
-offset_right = 314.0
-offset_bottom = -4.0
-scale = Vector2(3.64955, 3.26183)
-text = "20"
-
-[node name="ATKP" type="Label" parent="Player"]
-offset_left = 281.5
-offset_top = 56.5
-offset_right = 321.5
-offset_bottom = 105.5
-scale = Vector2(4.43231, 3.7051)
-text = "5
-"
-
-[node name="HPE" type="Label" parent="Player"]
-offset_left = 749.0
-offset_top = -375.0
-offset_right = 789.0
-offset_bottom = -352.0
-scale = Vector2(3.80079, 3.96714)
-text = "20"
-
-[node name="ATKE" type="Label" parent="Player"]
-offset_left = 765.0
-offset_top = -289.0
-offset_right = 805.0
-offset_bottom = -240.0
-scale = Vector2(4.7582, 4.00856)
-text = "5
-"
-
 [node name="Enemy" type="AnimatedSprite2D" parent="."]
 position = Vector2(306, -250)
 scale = Vector2(10, 10)
@@ -106,16 +73,53 @@ sprite_frames = SubResource("SpriteFrames_ol6im")
 autoplay = "default"
 frame_progress = 0.0449644
 
-[node name="Label" type="Label" parent="."]
-offset_left = -388.0
-offset_top = 217.0
-offset_right = -348.0
-offset_bottom = 266.0
+[node name="UI" type="Node" parent="."]
+script = ExtResource("6_f6xt6")
+
+[node name="HPP" type="Label" parent="UI"]
+offset_left = -184.0
+offset_top = 238.0
+offset_right = -144.0
+offset_bottom = 261.0
+scale = Vector2(5.85301, 6.24203)
+text = "20"
+
+[node name="ATKP" type="Label" parent="UI"]
+offset_left = -153.0
+offset_top = 389.0
+offset_right = -143.0
+offset_bottom = 438.0
+scale = Vector2(7.5676, 7.39991)
+text = "5
+"
+
+[node name="HPE" type="Label" parent="UI"]
+offset_left = 779.0
+offset_top = -464.0
+offset_right = 819.0
+offset_bottom = -441.0
+scale = Vector2(5.57269, 5.85972)
+text = "20"
+
+[node name="ATKE" type="Label" parent="UI"]
+offset_left = 817.0
+offset_top = -289.0
+offset_right = 857.0
+offset_bottom = -240.0
+scale = Vector2(8.78934, 6.84045)
+text = "5
+"
+
+[node name="PlayerStats" type="Label" parent="UI"]
+offset_left = -392.0
+offset_top = 226.0
+offset_right = -352.0
+offset_bottom = 275.0
 scale = Vector2(7.22307, 6.72)
 text = "Hp:
 Atk:"
 
-[node name="Label2" type="Label" parent="."]
+[node name="EnemyStats" type="Label" parent="UI"]
 offset_left = 573.0
 offset_top = -467.0
 offset_right = 613.0
@@ -124,13 +128,17 @@ scale = Vector2(7.22307, 6.72)
 text = "Hp:
 Atk:"
 
-[node name="Label3" type="Label" parent="."]
+[node name="Tips" type="Label" parent="UI"]
 offset_left = -1150.0
 offset_top = -636.0
-offset_right = -840.0
+offset_right = -841.0
 offset_bottom = -613.0
-scale = Vector2(4.31798, 4.79326)
+scale = Vector2(4.46146, 4.5181)
 text = "Click appearing squares to deal damage"
 
+[connection signal="init" from="." to="Player" method="_on_battle_init"]
+[connection signal="init" from="." to="UI" method="_on_battle_init"]
+[connection signal="EnemyUpdate" from="Player" to="UI" method="on_enemy_update"]
+[connection signal="PlayerUpdate" from="Player" to="UI" method="_on_player_update"]
 [connection signal="timeout" from="Player/spawntimer" to="." method="_on_spawntimer_timeout"]
 [connection signal="timeout" from="Player/atktimer" to="Player" method="_on_timer_timeout"]

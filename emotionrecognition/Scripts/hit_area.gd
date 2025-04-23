@@ -12,5 +12,4 @@ func _on_mouse_exited() -> void:
 func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("hit") and is_mouse_entered):
 		damage = 5
-		print("f")
 func get_damage(): return damage;

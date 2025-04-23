@@ -1,7 +1,9 @@
 extends Area2D
 
-@onready var jumpscare = $"../jumpscare"
-var battle := preload("res://Scenes/battle.tscn")
+var battle_path := "res://Scenes/battle.tscn"
 
-func _on_body_entered(body: CharacterBody2D) -> void:
-	get_tree().change_scene_to_file("res://battle.tscn")
+func _on_body_entered(body: Node2D) -> void:
+	if (body is CharacterBody2D):
+		call_deferred(go_to_battle())
+func go_to_battle():
+	get_tree().change_scene_to_file(battle_path)
